@@ -1,0 +1,7 @@
+.backgroundimage{
+    background-image: url(../../assets/images/landing-page//volvo.png);
+    background-size: 80%;
+    background-position-x: left;
+    background-position-y: center;
+    background-repeat: no-repeat;
+}

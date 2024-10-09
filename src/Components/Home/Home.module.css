@@ -1,0 +1,19 @@
+/* .search{
+    width: 1,120px;
+    height: 72px;
+    margin-top: 49px;
+    margin-left: 160px;
+    border-radius: 12px;
+    padding-left: 32px;
+    padding-top: 12px;
+    padding-right: 12px;
+    padding-bottom: 12px;
+    gap: 50px;
+} */
+
+.bg{
+    background-image: url(./../../assets/images/landing-page/Frame.png);
+     background-position-x: right;
+     background-size: 40%;
+    background-repeat: no-repeat;
+}

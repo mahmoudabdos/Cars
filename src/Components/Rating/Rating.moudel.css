@@ -1,0 +1,22 @@
+.test{
+    background-color: #F7FBFF;
+    background-image: url(../../assets/images/landing-page/sec-6/bg-sec6.png);
+    background-repeat: no-repeat;
+    background-size: 20%;
+    background-position-x: right;
+    background-position-y: top;
+}
+
+.card-body h5 {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+  
+  .card-body small {
+    font-size: 0.875rem;
+  }
+  
+  .card-body .text-warning {
+    font-size: 1rem;
+  }
+  
