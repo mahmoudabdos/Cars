@@ -66,24 +66,21 @@ const Products = () => {
   const [carsSpacifecation, setCarsSpacifecation] = useState([]);
   
 
-  const [searchQuery, setSearchQuery] = useState("")
 
-  async function getCarsSpicefications(query = "") {
-    const limit = 4; 
+  async function getCarsSpicefications() {
+    // const limit = 4; 
     try {
-      const { data } = await axios.get(`https://freetestapi.com/api/v1/cars?limit=${limit}&search=${query}`);
-      setCarsSpacifecation(data);
-      console.log(data);
+      const { data } = await axios.get(`https://myfakeapi.com/api/cars`);
+      setCarsSpacifecation(data.cars.splice(0, 4));
+      // console.log(data);
       
     } catch (error) {
-      console.log(error);
+      error.log(error);
     }
   }
 
 
-  function handleSeach(){
-    getCarsSpicefications(searchQuery)
-  }
+
 
   function navigateToCarDetails() {
     navigate("/carDetails");
@@ -96,6 +93,7 @@ const Products = () => {
   useEffect(() => {
    getCarsSpicefications();
   }, []);
+
 
   return <>
    <div className="container mt-5">
@@ -121,10 +119,8 @@ const Products = () => {
       aria-label="Search by name" 
       aria-describedby="basic-addon1" 
       style={{ height: "100%" }}
-      onChange={(e)=>setSearchQuery(e.target.value)}
     />
     <button 
-          onClick={handleSeach}
           className="btn btn-primary" type="button" style={{ borderRadius: "0 12px 12px 0", height: "100%" }}>
       Search
     </button>

@@ -48,34 +48,41 @@ export const AllVehicles = () => {
         { carImg: car3 },
         
       ];
+
+      
     
       const navigate = useNavigate();
       
       const [carDetails, setCarDetails] = useState([]);
-      const [searchQuery, setSearchQuery] = useState("");
-      const [currentPage, setCurrentPage] = useState(1);
       // eslint-disable-next-line no-unused-vars
-      const [totalPages, setTotalPages] = useState(1);
-      const [itemsPerPage] = useState(10); 
+      // const [searchQuery, setSearchQuery] = useState("");
+      // // eslint-disable-next-line no-unused-vars
+      // const [currentPage, setCurrentPage] = useState(1);
+      // // eslint-disable-next-line no-unused-vars
+      // const [totalPages, setTotalPages] = useState(1);
+      // const [itemsPerPage] = useState(30); 
     
-      async function getCarsSpecefecations(query = "") {
+      async function getCarsSpecefecations() {
         try {
-          const { data } = await axios.get(`https://freetestapi.com/api/v1/cars?search=${query}`);
+          const { data } = await axios.get(`https://myfakeapi.com/api/cars/`);
     
           console.log(data);
+
           
+
     
           if (Array.isArray(data)) {
             setCarDetails(data); 
-            setTotalPages(Math.ceil(data.length / itemsPerPage)); 
+            
+            // setTotalPages(Math.ceil(data.length / itemsPerPage)); 
           } else {
             setCarDetails([]); 
-            setTotalPages(1); 
+            // setTotalPages(1); 
           }
         } catch (error) {
           console.log("erroe from AllVechiles",error);
           setCarDetails([]);
-          setTotalPages(1);
+          // setTotalPages(1);
         }
       }
       useEffect(() => {
@@ -83,10 +90,10 @@ export const AllVehicles = () => {
       }, []);
 
 
-      function handleSeach() {
-        setCurrentPage(1);
-        getCarsSpecefecations(searchQuery);
-      }
+      // function handleSeach() {
+      //   setCurrentPage(1);
+      //   getCarsSpecefecations(searchQuery);
+      // }
       function navigateToDetails() {
         navigate("/details");
       }
@@ -95,15 +102,17 @@ export const AllVehicles = () => {
         //   const PagenationNP = (page) => {
         //     setCurrentPage(page);
         //   };
-      const indexOfLastItem = currentPage * itemsPerPage;
-      const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-      const currentItems = carDetails.slice(indexOfFirstItem, indexOfLastItem); 
+        // error on my think 
+      // const indexOfLastItem = currentPage * itemsPerPage;
+      // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+      // const currentItems = carDetails.slice(indexOfFirstItem, indexOfLastItem); 
     
      
 
   return <>
    
-   <section className="py-3">
+   <section className="py-3 overflow-hidden">
+
   <button className="btn btn-primary d-block mx-auto mt-3 bg-light text-primary py-2 px-4 rounded">
     POPULAR RENTAL DEALS
   </button>
@@ -134,10 +143,8 @@ export const AllVehicles = () => {
       aria-label="Search by name" 
       aria-describedby="basic-addon1" 
       style={{ height: "100%" }}
-      onChange={(e)=>setSearchQuery(e.target.value)}
     />
     <button 
-          onClick={handleSeach}
           className="btn btn-primary" type="button" style={{ borderRadius: "0 12px 12px 0", height: "100%" }}>
       Search
     </button>
@@ -145,15 +152,15 @@ export const AllVehicles = () => {
     </div>
 
   <div className="row px-5 mt-4">
-    {currentItems.length === 0 ? (
+    {carDetails.length === 0 ? (
       <div className="col-12 text-center text-danger">
         No cars available with this name.
       </div>
     ) : (
-      currentItems.map((car, index) => (
+      carDetails.map((car, index) => (
         <div key={index} className="col-sm-6 col-lg-3 mb-4">
           <div className="card h-100 shadow-sm">
-            <div className="card-body">
+            <div className="card-body">       
               <img
                 className="w-100 rounded"
                 src={carImages[index].carImg}
